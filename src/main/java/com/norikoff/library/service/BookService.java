@@ -40,6 +40,10 @@ public class BookService {
         return !bookRepository.findById(id).isPresent();
     }
 
+    public Book find(Long id) {
+        return bookRepository.findById(id).orElse(null);
+    }
+
     public Book update(Book book) throws Exception {
         final Book someBook = Optional.ofNullable(book.getId()).map(id -> bookRepository.findById(id).map(findedBook -> {
             if (book.getName() != null)
